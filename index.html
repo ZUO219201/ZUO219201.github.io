@@ -59,7 +59,7 @@
           <a class="button button-secondary" href="mailto:yourname@example.com">发送邮件</a>
         </div>
         <ul class="quick-facts" aria-label="个人概况">
-          <li><strong>所在城市</strong><span>中国 · 你的城市</span></li>
+          <li id="city"><strong>所在城市</strong><span>中国 · 你的城市</span></li>
           <li><strong>职业状态</strong><span>开放合作 / 求职中</span></li>
           <li><strong>关注领域</strong><span>技术 · 产品 · 创造</span></li>
         </ul>
@@ -80,17 +80,18 @@
     <section class="section about" id="about">
       <div class="section-heading reveal">
         <p>01 · ABOUT</p>
-        <h2>关于我</h2>
+        <h2 id="about-intro">关于我</h2>
       </div>
-      <div class="about-universe reveal">
-        <canvas class="nebula-canvas" aria-label="缓慢旋转的立体星云，由远近不同的发光节点和细线构成"></canvas>
-        <div class="about-grid">
-          <p class="lead">用两三句话讲清楚你是谁、你擅长什么，以及你希望解决什么问题。这一段会是访客和招聘者认识你的起点。</p>
-          <div class="about-copy">
-            <p>这里可以写一段更完整的自我介绍，例如专业背景、工作方式和价值观。避免简单罗列形容词，最好通过真实经历说明你的特点。</p>
-            <p>也可以写你目前关注的方向，以及希望结识怎样的伙伴、团队或机会。</p>
-          </div>
+      <div class="nebula-stage reveal" id="nebula-stage" aria-label="个人关键词星云">
+        <div class="nebula-stage-heading" aria-hidden="true">
+          <span>PERSONAL CONSTELLATION</span>
+          <span>01 — 10</span>
         </div>
+        <div class="nebula-scene" id="nebula-scene">
+          <div class="nebula-labels" id="nebula-labels"></div>
+        </div>
+        <p class="nebula-hint">拖动旋转 · 滚轮缩放 · 点击关键词探索</p>
+        <p class="sr-only" id="nebula-status" aria-live="polite">10 个个人关键词已加载。</p>
       </div>
     </section>
 
@@ -120,7 +121,7 @@
         </article>
         <article class="timeline-item reveal">
           <div class="timeline-date">2018 — 2022</div>
-          <div>
+          <div id="education">
             <p class="timeline-meta">学校名称 · 专业名称</p>
             <h3>本科 / 硕士</h3>
             <p>可填写主修方向、奖项、学生工作或与职业方向相关的重要课程和研究。</p>
@@ -172,9 +173,9 @@
       </div>
       <div class="skills-grid reveal">
         <article><span>01</span><h3>专业技能方向</h3><p>技能 A、技能 B、技能 C、技能 D</p></article>
-        <article><span>02</span><h3>软件与工具</h3><p>工具 A、工具 B、工具 C、工具 D</p></article>
-        <article><span>03</span><h3>协作与沟通</h3><p>需求分析、项目推进、跨团队协作、文档表达</p></article>
-        <article><span>04</span><h3>语言能力</h3><p>中文 · 母语 / 英语 · 工作沟通</p></article>
+        <article id="tools"><span>02</span><h3>软件与工具</h3><p>工具 A、工具 B、工具 C、工具 D</p></article>
+        <article id="collaboration"><span>03</span><h3>协作与沟通</h3><p>需求分析、项目推进、跨团队协作、文档表达</p></article>
+        <article id="interests"><span>04</span><h3>语言能力</h3><p>中文 · 母语 / 英语 · 工作沟通</p></article>
       </div>
     </section>
 
@@ -197,6 +198,7 @@
     <button id="patrick-mode" type="button" title="一个小彩蛋">认真生活，保持好奇 ✦</button>
   </footer>
 
+  <script src="assets/three-r128.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
