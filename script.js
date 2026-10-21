@@ -119,7 +119,7 @@ function startNebula() {
   lineGeometry.setAttribute("color", new THREE.BufferAttribute(lineColors, 3));
   const lines = new THREE.LineSegments(
     lineGeometry,
-    new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.65, depthWrite: false })
+    new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, fog: false })
   );
   network.add(lines);
 
@@ -154,6 +154,8 @@ function startNebula() {
   const worldPosition = new THREE.Vector3();
   const cameraPosition = new THREE.Vector3();
   const tempColor = new THREE.Color();
+  const nearLineColor = new THREE.Color(0x245871);
+  const farLineColor = new THREE.Color(0xd9eaf2);
 
   function projectLabels() {
     network.updateMatrixWorld(true);
@@ -182,9 +184,9 @@ function startNebula() {
       const fromDepth = THREE.MathUtils.clamp((cameraPosition.distanceTo(worldPosition) - camera.position.z + 2.5) / 5, 0, 1);
       points[to].marker.getWorldPosition(worldPosition);
       const toDepth = THREE.MathUtils.clamp((cameraPosition.distanceTo(worldPosition) - camera.position.z + 2.5) / 5, 0, 1);
-      tempColor.set(0x6395ac).lerp(new THREE.Color(0xe6f3f8), fromDepth * 0.8);
+      tempColor.copy(nearLineColor).lerp(farLineColor, THREE.MathUtils.smoothstep(fromDepth, 0.1, 0.9));
       colorAttribute.setXYZ(index * 2, tempColor.r, tempColor.g, tempColor.b);
-      tempColor.set(0x6395ac).lerp(new THREE.Color(0xe6f3f8), toDepth * 0.8);
+      tempColor.copy(nearLineColor).lerp(farLineColor, THREE.MathUtils.smoothstep(toDepth, 0.1, 0.9));
       colorAttribute.setXYZ(index * 2 + 1, tempColor.r, tempColor.g, tempColor.b);
     });
     colorAttribute.needsUpdate = true;
